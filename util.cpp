@@ -15,6 +15,48 @@ std::string convToLower(std::string src)
     to a set of words based on the criteria given in the assignment **/
 std::set<std::string> parseStringToWords(string rawWords)
 {
+  string buffer = "";
+  string finalString = "";
+  stringstream ss(rawWords);
+  // create a set
+  std::set <string> finalSet;
+  int counter = 0;
+
+  /*while(ss>>buffer){
+    for(int i=0; i<buffer.length(); i++){
+      // count each letter
+      counter++;
+      while(!ispunct(buffer[i])){
+        finalString+=buffer[i];
+        if(counter > 2){}
+        //Sublime*Text's --> Sublime Text
+        // substring from beginning to count
+        //store the count in a new variable in case of new substring
+      }
+      //check length of substring before returning */
+    while(ss>>buffer){
+      for(int i=0; i<buffer.length(); i++){
+        // count each letter
+        if(!ispunct(buffer[i])){
+          finalString+=buffer[i];
+          convToLower(finalString);
+          trim(finalString);
+          }
+        else {
+            if (finalString.length() >= 2){
+                finalSet.insert(finalString);
+            }
+              finalString = "";
+        }
+          
+        }
+        //check length of substring before returning 
+        
+      }
+    
+    return finalSet;  
+    
+  }
 
 
 
@@ -24,8 +66,6 @@ std::set<std::string> parseStringToWords(string rawWords)
 
 
 
-
-}
 
 /**************************************************
  * COMPLETED - You may use the following functions
@@ -55,3 +95,4 @@ std::string &rtrim(std::string &s) {
 std::string &trim(std::string &s) {
     return ltrim(rtrim(s));
 }
+
