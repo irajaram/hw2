@@ -13,16 +13,27 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
-
-
-
-
-
+    std::set<T> commonValues;
+    for(typename std::set<T>::iterator it=s1.begin();it != s1.end();++it){
+        if(s2.find(*it)!= s2.end()){//if it equals end, that element is not present in the set {
+            commonValues.insert(*it);
+        }
+    }
+    
+    return commonValues;
 }
+
+
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
-
+    std::set<T> resultValues = s1;
+    for(typename std::set<T>::iterator it=s2.begin();it != s2.end();++it){
+        if((resultValues.find(*it) == resultValues.end())){//if it equals end, that means element is not in the set {
+            resultValues.insert(*it);
+        }
+    }
+    return resultValues;
 
 
 

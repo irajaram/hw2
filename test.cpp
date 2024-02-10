@@ -17,38 +17,48 @@ std::set<std::string> parseStringToWords(string rawWords)
 {
   string buffer;
   string finalString = "";
-  rawWords = convToLower(rawWords);
-  //cout << rawWords << endl;
   stringstream ss(rawWords);
   // create a set
   std::set <string> finalSet;
 
-  while(ss>>buffer){
-    int count = 0;
-    for(int i=0; i<buffer.size(); i++){
+  /*while(ss>>buffer){
+    for(int i=0; i<buffer.length(); i++){
       // count each letter
-      if(!ispunct(buffer[i])){
-        finalString+=buffer[i];        
+      counter++;
+      while(!ispunct(buffer[i])){
+        finalString+=buffer[i];
+        if(counter > 2){}
+        //Sublime*Text's --> Sublime Text
+        // substring from beginning to count
+        //store the count in a new variable in case of new substring
       }
-      else{
-        break;
-      }        
+      //check length of substring before returning */
+    while(ss>>buffer){
+      for(int i=0; i<buffer.length(); i++){
+        // count each letter
+        if(!ispunct(buffer[i]) && (rawWords[i] != ' ')){
+          finalString+=buffer[i];
+          convToLower(finalString);
+          trim(finalString);
+          }
+        else {
+            if (finalString.length() >= 2){
+                finalSet.insert(finalString);
+            }
+              finalString = "";
+        }
+          
+        }
+        //check length of substring before returning 
+        
     }
-    if(finalString.length()>=2){
-      finalSet.insert(finalString);
-      count ++;
-    }
-    finalString = "";
-      //check length of substring before returning 
-  }    
-  
 
-/*if (!finalString.empty() && finalString.length() >= 2) {
-  finalSet.insert(finalString);
-}*/
+  if (!finalString.empty() && finalString.length() >= 2) {
+    finalSet.insert(finalString);
+  }
 
-  
-  return finalSet;  
+    
+    return finalSet;  
     
   }
 
@@ -90,3 +100,14 @@ std::string &trim(std::string &s) {
     return ltrim(rtrim(s));
 }
 
+int main(){
+  std::set<std::string> output_set;
+  string newString = "Hello World";
+  output_set = parseStringToWords(newString);
+  for(auto it = output_set.begin(); it != output_set.end(); it++)
+  {
+      cout << *it << " ";
+  }
+
+  return 0;
+}
